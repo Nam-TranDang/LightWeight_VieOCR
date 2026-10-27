@@ -1,0 +1,11 @@
+# YOLO11 Config
+model:
+  variant: "yolo_v11_m"     # In Registry
+  nc: 1                   # Number of Class - Text detect task.
+  class_names: ['text']         # YOLO11 Class.
+
+# Img config
+input_dim:
+  channels: 3
+  height: 480
+  width: 480

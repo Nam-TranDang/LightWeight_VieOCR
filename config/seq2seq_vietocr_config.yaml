@@ -1,0 +1,41 @@
+  # seq2seq_vietocr_config.yaml
+
+  # --- System & Paths ---
+  device: "cuda"
+  weights: "/home/nam/Downloads/source_for_seq2seq_manual_label_5Feb2026/prelabeller_ocr/checkpoint/vgg_seq2seq.pth"
+  image_path: "/home/nam/Downloads/source_for_seq2seq_manual_label_5Feb2026/prelabeller_ocr/inference/t2.png"
+  height: 32  # Default height VietOCR
+
+
+
+  # --- Vocabulary ---
+  # Note: Ensure there is a single space at the very end of the string inside the quotes.
+  vocab: "aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆfFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTuUùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ0123456789!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~ "
+
+  # This section mirrors the original VietOCR config structure
+  backbone: vgg19_bn
+
+  cnn:
+    hidden: 256
+    # Pooling stride size (Essential for VGG)
+    ss:
+      - [2, 2]
+      - [2, 2]
+      - [2, 1]
+      - [2, 1]
+      - [1, 1]
+    # Pooling kernel size
+    ks:
+      - [2, 2]
+      - [2, 2]
+      - [2, 1]
+      - [2, 1]
+      - [1, 1]
+
+  # Specific parameters for the LSTM (Seq2Seq) head
+  seq_modeling:
+    encoder_hidden: 256
+    decoder_hidden: 256
+    img_channel: 256
+    decoder_embedded: 256
+    dropout: 0.1
