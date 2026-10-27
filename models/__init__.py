@@ -1,0 +1,1 @@
+from .YOLO11 import Yolo11
